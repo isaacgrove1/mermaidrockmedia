@@ -59,8 +59,14 @@ body {
     transition: transform 0.3s ease;
 }
 
+.polaroid {
+    display: inline-block;
+    width: 100%;
+    max-width: 320px;
+}
+
 .polaroid:hover {
-    transform: rotate(0deg);
+    transform: none;
 }
 
 .polaroid img {
@@ -71,6 +77,45 @@ body {
     display: block;
     background: #f5f5f5;
 }
+
+.flip-card {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-inner {
+    position: relative;
+    width: 100%;
+    height: 280px; /* same as image height */
+    max-width: 320px;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+}
+
+.flipped .flip-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-inner img {
+    position: absolute;
+    width: 100%;
+    height: 280px;
+    max-width: 320px;
+    object-fit: cover;
+    backface-visibility: hidden;
+    border-radius: 2px;
+}
+
+/* front remains as-is */
+.flip-inner .front {
+    transform: rotateY(0deg);
+}
+
+/* back image flipped to hide until rotated */
+.flip-inner .back {
+    transform: rotateY(180deg);
+}
+
 
 h1 {
     font-size: 3.5rem;
